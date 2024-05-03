@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @generated SignedSource<<35a53d5dae3f58a924034a4a55bddb07>>
+ * @generated SignedSource<<ea2440da83ee9eddc3fce3e7e69935b2>>
  */
 
 /**
@@ -55,11 +55,11 @@ class ReactNativeFeatureFlagsDefaults : public ReactNativeFeatureFlagsProvider {
     return false;
   }
 
-  bool enableMicrotasks() override {
+  bool enableGranularShadowTreeStateReconciliation() override {
     return false;
   }
 
-  bool enableSpannableBuildingUnification() override {
+  bool enableMicrotasks() override {
     return false;
   }
 
@@ -84,6 +84,10 @@ class ReactNativeFeatureFlagsDefaults : public ReactNativeFeatureFlagsProvider {
   }
 
   bool inspectorEnableModernCDPRegistry() override {
+    return false;
+  }
+
+  bool lazyAnimationCallbacks() override {
     return false;
   }
 

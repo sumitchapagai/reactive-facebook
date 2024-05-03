@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @generated SignedSource<<5f08267961d732e2f573ed933abf5ab9>>
+ * @generated SignedSource<<40609d554dca56ea34653f0a77e5b62c>>
  */
 
 /**
@@ -31,14 +31,15 @@ public class ReactNativeFeatureFlagsLocalAccessor : ReactNativeFeatureFlagsAcces
   private var destroyFabricSurfacesInReactInstanceManagerCache: Boolean? = null
   private var enableBackgroundExecutorCache: Boolean? = null
   private var enableCleanTextInputYogaNodeCache: Boolean? = null
+  private var enableGranularShadowTreeStateReconciliationCache: Boolean? = null
   private var enableMicrotasksCache: Boolean? = null
-  private var enableSpannableBuildingUnificationCache: Boolean? = null
   private var enableSynchronousStateUpdatesCache: Boolean? = null
   private var enableUIConsistencyCache: Boolean? = null
   private var fixMountedFlagAndFixPreallocationCloneCache: Boolean? = null
   private var forceBatchingMountItemsOnAndroidCache: Boolean? = null
   private var inspectorEnableCxxInspectorPackagerConnectionCache: Boolean? = null
   private var inspectorEnableModernCDPRegistryCache: Boolean? = null
+  private var lazyAnimationCallbacksCache: Boolean? = null
   private var preventDoubleTextMeasureCache: Boolean? = null
   private var useModernRuntimeSchedulerCache: Boolean? = null
   private var useNativeViewConfigsInBridgelessModeCache: Boolean? = null
@@ -114,22 +115,22 @@ public class ReactNativeFeatureFlagsLocalAccessor : ReactNativeFeatureFlagsAcces
     return cached
   }
 
+  override fun enableGranularShadowTreeStateReconciliation(): Boolean {
+    var cached = enableGranularShadowTreeStateReconciliationCache
+    if (cached == null) {
+      cached = currentProvider.enableGranularShadowTreeStateReconciliation()
+      accessedFeatureFlags.add("enableGranularShadowTreeStateReconciliation")
+      enableGranularShadowTreeStateReconciliationCache = cached
+    }
+    return cached
+  }
+
   override fun enableMicrotasks(): Boolean {
     var cached = enableMicrotasksCache
     if (cached == null) {
       cached = currentProvider.enableMicrotasks()
       accessedFeatureFlags.add("enableMicrotasks")
       enableMicrotasksCache = cached
-    }
-    return cached
-  }
-
-  override fun enableSpannableBuildingUnification(): Boolean {
-    var cached = enableSpannableBuildingUnificationCache
-    if (cached == null) {
-      cached = currentProvider.enableSpannableBuildingUnification()
-      accessedFeatureFlags.add("enableSpannableBuildingUnification")
-      enableSpannableBuildingUnificationCache = cached
     }
     return cached
   }
@@ -190,6 +191,16 @@ public class ReactNativeFeatureFlagsLocalAccessor : ReactNativeFeatureFlagsAcces
       cached = currentProvider.inspectorEnableModernCDPRegistry()
       accessedFeatureFlags.add("inspectorEnableModernCDPRegistry")
       inspectorEnableModernCDPRegistryCache = cached
+    }
+    return cached
+  }
+
+  override fun lazyAnimationCallbacks(): Boolean {
+    var cached = lazyAnimationCallbacksCache
+    if (cached == null) {
+      cached = currentProvider.lazyAnimationCallbacks()
+      accessedFeatureFlags.add("lazyAnimationCallbacks")
+      lazyAnimationCallbacksCache = cached
     }
     return cached
   }

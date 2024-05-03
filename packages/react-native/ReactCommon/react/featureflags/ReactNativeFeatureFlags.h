@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @generated SignedSource<<f9ff3bc9f437dbd6965f5927ada5f645>>
+ * @generated SignedSource<<b081516c5b1aa804ec4f444f48773fbb>>
  */
 
 /**
@@ -73,14 +73,14 @@ class ReactNativeFeatureFlags {
   RN_EXPORT static bool enableCleanTextInputYogaNode();
 
   /**
+   * When enabled, the renderer would only fail commits when they propagate state and the last commit that updated state changed before committing.
+   */
+  RN_EXPORT static bool enableGranularShadowTreeStateReconciliation();
+
+  /**
    * Enables the use of microtasks in Hermes (scheduling) and RuntimeScheduler (execution).
    */
   RN_EXPORT static bool enableMicrotasks();
-
-  /**
-   * Uses new, deduplicated logic for constructing Android Spannables from text fragments
-   */
-  RN_EXPORT static bool enableSpannableBuildingUnification();
 
   /**
    * Dispatches state updates synchronously in Fabric (e.g.: updates the scroll position in the shadow tree synchronously from the main thread).
@@ -111,6 +111,11 @@ class ReactNativeFeatureFlags {
    * Flag determining if the modern CDP backend should be enabled. This flag is global and should not be changed across React Host lifetimes.
    */
   RN_EXPORT static bool inspectorEnableModernCDPRegistry();
+
+  /**
+   * Only enqueue Choreographer calls if there is an ongoing animation, instead of enqueueing every frame.
+   */
+  RN_EXPORT static bool lazyAnimationCallbacks();
 
   /**
    * When enabled, ParagraphShadowNode will no longer call measure twice.

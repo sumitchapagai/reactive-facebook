@@ -12,6 +12,14 @@
 
 import type {FeatureFlagDefinitions} from './types';
 
+/**
+ * This is the source of truth for React Native feature flags.
+ *
+ * If you modify this file, you need to update all the generated files
+ * running the following script from the repo root:
+ *   yarn featureflags-update
+ */
+
 // These flags are only used in tests for the feature flags system
 const testDefinitions: FeatureFlagDefinitions = {
   common: {
@@ -60,15 +68,15 @@ const definitions: FeatureFlagDefinitions = {
       defaultValue: false,
       description: 'Clean yoga node when <TextInput /> does not change.',
     },
+    enableGranularShadowTreeStateReconciliation: {
+      defaultValue: false,
+      description:
+        'When enabled, the renderer would only fail commits when they propagate state and the last commit that updated state changed before committing.',
+    },
     enableMicrotasks: {
       defaultValue: false,
       description:
         'Enables the use of microtasks in Hermes (scheduling) and RuntimeScheduler (execution).',
-    },
-    enableSpannableBuildingUnification: {
-      defaultValue: false,
-      description:
-        'Uses new, deduplicated logic for constructing Android Spannables from text fragments',
     },
     enableSynchronousStateUpdates: {
       defaultValue: false,
@@ -98,6 +106,11 @@ const definitions: FeatureFlagDefinitions = {
       defaultValue: false,
       description:
         'Flag determining if the modern CDP backend should be enabled. This flag is global and should not be changed across React Host lifetimes.',
+    },
+    lazyAnimationCallbacks: {
+      defaultValue: false,
+      description:
+        'Only enqueue Choreographer calls if there is an ongoing animation, instead of enqueueing every frame.',
     },
     preventDoubleTextMeasure: {
       defaultValue: false,
