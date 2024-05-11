@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @generated SignedSource<<cc44495e0b264e2d56e155a164a774e7>>
+ * @generated SignedSource<<c35ee97cf5c4b5f77cdd045341f2848b>>
  */
 
 /**
@@ -35,10 +35,28 @@ public object ReactNativeFeatureFlags {
   public fun commonTestFlag(): Boolean = accessor.commonTestFlag()
 
   /**
+   * Enables the differentiator to understand the "collapsableChildren" prop
+   */
+  @JvmStatic
+  public fun allowCollapsableChildren(): Boolean = accessor.allowCollapsableChildren()
+
+  /**
+   * To be used with batchRenderingUpdatesInEventLoop. When enbled, the Android mounting layer will concatenate pending transactions to ensure they're applied atomatically
+   */
+  @JvmStatic
+  public fun androidEnablePendingFabricTransactions(): Boolean = accessor.androidEnablePendingFabricTransactions()
+
+  /**
    * When enabled, the RuntimeScheduler processing the event loop will batch all rendering updates and dispatch them together at the end of each iteration of the loop.
    */
   @JvmStatic
   public fun batchRenderingUpdatesInEventLoop(): Boolean = accessor.batchRenderingUpdatesInEventLoop()
+
+  /**
+   * When enabled, ReactInstanceManager will clean up Fabric surfaces on destroy().
+   */
+  @JvmStatic
+  public fun destroyFabricSurfacesInReactInstanceManager(): Boolean = accessor.destroyFabricSurfacesInReactInstanceManager()
 
   /**
    * Enables the use of a background executor to compute layout and commit updates on Fabric (this system is deprecated and should not be used).
@@ -53,34 +71,16 @@ public object ReactNativeFeatureFlags {
   public fun enableCleanTextInputYogaNode(): Boolean = accessor.enableCleanTextInputYogaNode()
 
   /**
-   * When enabled, Fabric will use customDrawOrder in ReactViewGroup (similar to old architecture).
+   * When enabled, the renderer would only fail commits when they propagate state and the last commit that updated state changed before committing.
    */
   @JvmStatic
-  public fun enableCustomDrawOrderFabric(): Boolean = accessor.enableCustomDrawOrderFabric()
-
-  /**
-   * Attempt at fixing a crash related to subview clipping on Android. This is a kill switch for the fix
-   */
-  @JvmStatic
-  public fun enableFixForClippedSubviewsCrash(): Boolean = accessor.enableFixForClippedSubviewsCrash()
+  public fun enableGranularShadowTreeStateReconciliation(): Boolean = accessor.enableGranularShadowTreeStateReconciliation()
 
   /**
    * Enables the use of microtasks in Hermes (scheduling) and RuntimeScheduler (execution).
    */
   @JvmStatic
   public fun enableMicrotasks(): Boolean = accessor.enableMicrotasks()
-
-  /**
-   * Enables the notification of mount operations to mount hooks on Android.
-   */
-  @JvmStatic
-  public fun enableMountHooksAndroid(): Boolean = accessor.enableMountHooksAndroid()
-
-  /**
-   * Uses new, deduplicated logic for constructing Android Spannables from text fragments
-   */
-  @JvmStatic
-  public fun enableSpannableBuildingUnification(): Boolean = accessor.enableSpannableBuildingUnification()
 
   /**
    * Dispatches state updates synchronously in Fabric (e.g.: updates the scroll position in the shadow tree synchronously from the main thread).
@@ -95,6 +95,12 @@ public object ReactNativeFeatureFlags {
   public fun enableUIConsistency(): Boolean = accessor.enableUIConsistency()
 
   /**
+   * Forces the mounting layer on Android to always batch mount items instead of dispatching them immediately. This might fix some crashes related to synchronous state updates, where some views dispatch state updates during mount.
+   */
+  @JvmStatic
+  public fun forceBatchingMountItemsOnAndroid(): Boolean = accessor.forceBatchingMountItemsOnAndroid()
+
+  /**
    * Flag determining if the C++ implementation of InspectorPackagerConnection should be used instead of the per-platform one. This flag is global and should not be changed across React Host lifetimes.
    */
   @JvmStatic
@@ -107,6 +113,18 @@ public object ReactNativeFeatureFlags {
   public fun inspectorEnableModernCDPRegistry(): Boolean = accessor.inspectorEnableModernCDPRegistry()
 
   /**
+   * Only enqueue Choreographer calls if there is an ongoing animation, instead of enqueueing every frame.
+   */
+  @JvmStatic
+  public fun lazyAnimationCallbacks(): Boolean = accessor.lazyAnimationCallbacks()
+
+  /**
+   * When enabled, ParagraphShadowNode will no longer call measure twice.
+   */
+  @JvmStatic
+  public fun preventDoubleTextMeasure(): Boolean = accessor.preventDoubleTextMeasure()
+
+  /**
    * When enabled, it uses the modern fork of RuntimeScheduler that allows scheduling tasks with priorities from any thread.
    */
   @JvmStatic
@@ -117,6 +135,12 @@ public object ReactNativeFeatureFlags {
    */
   @JvmStatic
   public fun useNativeViewConfigsInBridgelessMode(): Boolean = accessor.useNativeViewConfigsInBridgelessMode()
+
+  /**
+   * When enabled, it uses optimised state reconciliation algorithm.
+   */
+  @JvmStatic
+  public fun useStateAlignmentMechanism(): Boolean = accessor.useStateAlignmentMechanism()
 
   /**
    * Overrides the feature flags with the ones provided by the given provider

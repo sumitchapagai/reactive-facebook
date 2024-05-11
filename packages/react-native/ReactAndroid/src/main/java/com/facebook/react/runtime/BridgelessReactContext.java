@@ -19,7 +19,6 @@ import com.facebook.react.bridge.JavaScriptModuleRegistry;
 import com.facebook.react.bridge.NativeArray;
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
-import com.facebook.react.bridge.RuntimeExecutor;
 import com.facebook.react.bridge.UIManager;
 import com.facebook.react.bridge.WritableNativeArray;
 import com.facebook.react.common.annotations.FrameworkAPI;
@@ -27,6 +26,7 @@ import com.facebook.react.common.annotations.UnstableReactNativeAPI;
 import com.facebook.react.config.ReactFeatureFlags;
 import com.facebook.react.devsupport.interfaces.DevSupportManager;
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
+import com.facebook.react.turbomodule.core.interfaces.CallInvokerHolder;
 import com.facebook.react.uimanager.events.EventDispatcher;
 import com.facebook.react.uimanager.events.EventDispatcherProvider;
 import java.lang.reflect.InvocationHandler;
@@ -95,6 +95,11 @@ class BridgelessReactContext extends ReactApplicationContext implements EventDis
     return mReactHost.isInstanceInitialized();
   }
 
+  @Override
+  public boolean hasReactInstance() {
+    return mReactHost.isInstanceInitialized();
+  }
+
   DevSupportManager getDevSupportManager() {
     return mReactHost.getDevSupportManager();
   }
@@ -153,17 +158,6 @@ class BridgelessReactContext extends ReactApplicationContext implements EventDis
     return mReactHost.getNativeModule(nativeModuleInterface);
   }
 
-  /**
-   * @return the RuntimeExecutor, a thread-safe handler for accessing the runtime. If the runtime is
-   *     not initialized yet, it will return null.
-   */
-  @Override
-  @FrameworkAPI
-  @UnstableReactNativeAPI
-  public @Nullable RuntimeExecutor getRuntimeExecutor() {
-    return mReactHost.getRuntimeExecutor();
-  }
-
   @Override
   @FrameworkAPI
   @UnstableReactNativeAPI
@@ -174,6 +168,11 @@ class BridgelessReactContext extends ReactApplicationContext implements EventDis
   @Override
   public void handleException(Exception e) {
     mReactHost.handleHostException(e);
+  }
+
+  @Override
+  public @Nullable CallInvokerHolder getJSCallInvokerHolder() {
+    return mReactHost.getJSCallInvokerHolder();
   }
 
   DefaultHardwareBackBtnHandler getDefaultHardwareBackBtnHandler() {

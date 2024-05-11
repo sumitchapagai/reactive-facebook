@@ -541,7 +541,6 @@ android {
         targets(
             "jsijniprofiler",
             "reactnativeblob",
-            "reactperfloggerjni",
             "bridgeless",
             "rninstance",
             "hermesinstancejni",
@@ -557,6 +556,7 @@ android {
             "react_codegen_rncore",
             "react_debug",
             "react_featureflags",
+            "react_performance_timeline",
             "react_utils",
             "react_render_componentregistry",
             "react_newarchdefaults",
@@ -565,6 +565,7 @@ android {
             "react_render_consistency",
             "react_render_dom",
             "react_render_graphics",
+            "react_render_observers_events",
             "rrc_image",
             "rrc_root",
             "rrc_view",

@@ -10,10 +10,9 @@
 #include "RuntimeScheduler_Modern.h"
 #include "SchedulerPriorityUtils.h"
 
+#include <cxxreact/SystraceSection.h>
 #include <react/featureflags/ReactNativeFeatureFlags.h>
-#include <react/renderer/debug/SystraceSection.h>
 #include <utility>
-#include "ErrorUtils.h"
 
 namespace facebook::react {
 

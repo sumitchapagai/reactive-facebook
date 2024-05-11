@@ -26,7 +26,6 @@ import android.view.WindowManager
 import android.view.accessibility.AccessibilityEvent
 import android.widget.FrameLayout
 import androidx.annotation.UiThread
-import com.facebook.common.logging.FLog
 import com.facebook.react.R
 import com.facebook.react.bridge.GuardedRunnable
 import com.facebook.react.bridge.LifecycleEventListener
@@ -76,19 +75,19 @@ public class ReactModalHostView(context: ThemedReactContext) :
   public var statusBarTranslucent: Boolean = false
     set(value) {
       field = value
-      propertyRequiresNewDialog = true
+      createNewDialog = true
     }
 
   public var animationType: String? = null
     set(value) {
       field = value
-      propertyRequiresNewDialog = true
+      createNewDialog = true
     }
 
   public var hardwareAccelerated: Boolean = false
     set(value) {
       field = value
-      propertyRequiresNewDialog = true
+      createNewDialog = true
     }
 
   public var stateWrapper: StateWrapper?
@@ -106,9 +105,10 @@ public class ReactModalHostView(context: ThemedReactContext) :
   private var hostView: DialogRootViewGroup
 
   // Set this flag to true if changing a particular property on the view requires a new Dialog to
-  // be created.  For instance, animation does since it affects Dialog creation through the theme
+  // be created or Dialog was destroyed. For instance, animation does since it affects Dialog
+  // creation through the theme
   // but transparency does not since we can access the window to update the property.
-  private var propertyRequiresNewDialog = false
+  private var createNewDialog = false
 
   init {
     context.addLifecycleEventListener(this)
@@ -177,6 +177,7 @@ public class ReactModalHostView(context: ThemedReactContext) :
         }
       }
       dialog = null
+      createNewDialog = true
 
       // We need to remove the mHostView from the parent
       // It is possible we are dismissing this dialog and reattaching the hostView to another
@@ -211,22 +212,15 @@ public class ReactModalHostView(context: ThemedReactContext) :
 
     // If the existing Dialog is currently up, we may need to redraw it or we may be able to update
     // the property without having to recreate the dialog
-    dialog?.let { nonNullDialog ->
-      val dialogContext: Context? =
-          ContextUtils.findContextOfType(nonNullDialog.context, Activity::class.java)
-      // TODO(T85755791): remove after investigation
-      FLog.e(TAG, "Updating existing dialog with context: $dialogContext")
-
-      if (propertyRequiresNewDialog) {
-        dismiss()
-      } else {
-        updateProperties()
-        return
-      }
+    if (createNewDialog) {
+      dismiss()
+    } else {
+      updateProperties()
+      return
     }
 
     // Reset the flag since we are going to create a new dialog
-    propertyRequiresNewDialog = false
+    createNewDialog = false
     val theme: Int =
         when (animationType) {
           "fade" -> R.style.Theme_FullScreenDialogAnimatedFade
@@ -235,16 +229,12 @@ public class ReactModalHostView(context: ThemedReactContext) :
         }
 
     val currentActivity = getCurrentActivity()
-    val context = currentActivity ?: context
-    val newDialog = Dialog(context, theme)
+    val newDialog = Dialog(currentActivity ?: context, theme)
     dialog = newDialog
     Objects.requireNonNull<Window>(newDialog.window)
         .setFlags(
             WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
             WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE)
-
-    // TODO(T85755791): remove after investigation
-    FLog.e(TAG, "Creating new dialog from context: " + context + "@" + context.hashCode())
 
     newDialog.setContentView(contentView)
     updateProperties()
@@ -269,7 +259,8 @@ public class ReactModalHostView(context: ThemedReactContext) :
                 // We redirect the rest of the key events to the current activity, since the
                 // activity expects to receive those events and react to them, ie. in the case of
                 // the dev menu
-                val innerCurrentActivity = (context as ReactContext).currentActivity
+                val innerCurrentActivity =
+                    (this@ReactModalHostView.context as ReactContext).currentActivity
                 if (innerCurrentActivity != null) {
                   return innerCurrentActivity.onKeyUp(keyCode, event)
                 }

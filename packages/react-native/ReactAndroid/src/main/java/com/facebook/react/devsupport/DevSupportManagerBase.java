@@ -57,6 +57,7 @@ import com.facebook.react.devsupport.interfaces.DevSupportManager;
 import com.facebook.react.devsupport.interfaces.ErrorCustomizer;
 import com.facebook.react.devsupport.interfaces.ErrorType;
 import com.facebook.react.devsupport.interfaces.PackagerStatusCallback;
+import com.facebook.react.devsupport.interfaces.PausedInDebuggerOverlayManager;
 import com.facebook.react.devsupport.interfaces.RedBoxHandler;
 import com.facebook.react.devsupport.interfaces.StackFrame;
 import com.facebook.react.modules.core.RCTNativeAppEventEmitter;
@@ -98,6 +99,7 @@ public abstract class DevSupportManagerBase implements DevSupportManager {
   private final File mJSSplitBundlesDir;
   private final DefaultJSExceptionHandler mDefaultJSExceptionHandler;
   private final DevLoadingViewManager mDevLoadingViewManager;
+  private final PausedInDebuggerOverlayManager mPausedInDebuggerOverlayManager;
 
   private @Nullable SurfaceDelegate mRedBoxSurfaceDelegate;
   private @Nullable AlertDialog mDevOptionsDialog;
@@ -133,7 +135,8 @@ public abstract class DevSupportManagerBase implements DevSupportManager {
       int minNumShakes,
       @Nullable Map<String, RequestHandler> customPackagerCommandHandlers,
       @Nullable SurfaceDelegateFactory surfaceDelegateFactory,
-      @Nullable DevLoadingViewManager devLoadingViewManager) {
+      @Nullable DevLoadingViewManager devLoadingViewManager,
+      @Nullable PausedInDebuggerOverlayManager pausedInDebuggerOverlayManager) {
     mReactInstanceDevHelper = reactInstanceDevHelper;
     mApplicationContext = applicationContext;
     mJSAppBundleName = packagerPathForJSBundleName;
@@ -190,6 +193,17 @@ public abstract class DevSupportManagerBase implements DevSupportManager {
             ? devLoadingViewManager
             : new DefaultDevLoadingViewImplementation(reactInstanceDevHelper);
     mSurfaceDelegateFactory = surfaceDelegateFactory;
+    mPausedInDebuggerOverlayManager =
+        pausedInDebuggerOverlayManager != null
+            ? pausedInDebuggerOverlayManager
+            : new PausedInDebuggerOverlayDialogManager(
+                () -> {
+                  Activity context = mReactInstanceDevHelper.getCurrentActivity();
+                  if (context == null || context.isFinishing()) {
+                    return null;
+                  }
+                  return context;
+                });
   }
   ;
 
@@ -1163,5 +1177,16 @@ public abstract class DevSupportManagerBase implements DevSupportManager {
   public void openDebugger() {
     mDevServerHelper.openDebugger(
         mCurrentContext, mApplicationContext.getString(R.string.catalyst_open_debugger_error));
+  }
+
+  @Override
+  public void showPausedInDebuggerOverlay(
+      String message, PausedInDebuggerOverlayCommandListener listener) {
+    mPausedInDebuggerOverlayManager.showPausedInDebuggerOverlay(message, listener);
+  }
+
+  @Override
+  public void hidePausedInDebuggerOverlay() {
+    mPausedInDebuggerOverlayManager.hidePausedInDebuggerOverlay();
   }
 }

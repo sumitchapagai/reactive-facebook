@@ -303,7 +303,13 @@ public class DevServerHelper {
     // [Source: Android docs]
     String androidId = Settings.Secure.ANDROID_ID;
 
-    String rawDeviceId = String.format(Locale.US, "android-%s-%s", packageName, androidId);
+    String rawDeviceId =
+        String.format(
+            Locale.US,
+            "android-%s-%s-%s",
+            packageName,
+            androidId,
+            InspectorFlags.getEnableModernCDPRegistry() ? "fusebox" : "legacy");
 
     return getSHA256(rawDeviceId);
   }
@@ -376,17 +382,20 @@ public class DevServerHelper {
       String mainModuleID, BundleType type, String host, boolean modulesOnly, boolean runModule) {
     boolean dev = getDevMode();
     return String.format(
-        Locale.US,
-        "http://%s/%s.%s?platform=android&dev=%s&lazy=%s&minify=%s&app=%s&modulesOnly=%s&runModule=%s",
-        host,
-        mainModuleID,
-        type.typeID(),
-        dev, // dev
-        dev, // lazy
-        getJSMinifyMode(),
-        mPackageName,
-        modulesOnly ? "true" : "false",
-        runModule ? "true" : "false");
+            Locale.US,
+            "http://%s/%s.%s?platform=android&dev=%s&lazy=%s&minify=%s&app=%s&modulesOnly=%s&runModule=%s",
+            host,
+            mainModuleID,
+            type.typeID(),
+            dev, // dev
+            dev, // lazy
+            getJSMinifyMode(),
+            mPackageName,
+            modulesOnly ? "true" : "false",
+            runModule ? "true" : "false")
+        + (InspectorFlags.getEnableModernCDPRegistry()
+            ? "&excludeSource=true&sourcePaths=url-server"
+            : "");
   }
 
   private String createBundleURL(String mainModuleID, BundleType type) {
