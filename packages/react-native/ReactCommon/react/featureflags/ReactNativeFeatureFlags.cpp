@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @generated SignedSource<<6c93c729ef1a05b5b7d00bafa1f386ad>>
+ * @generated SignedSource<<71ea09d31186aea96ff207b1015f155e>>
  */
 
 /**
@@ -65,8 +65,8 @@ bool ReactNativeFeatureFlags::enableUIConsistency() {
   return getAccessor().enableUIConsistency();
 }
 
-bool ReactNativeFeatureFlags::fixMountedFlagAndFixPreallocationClone() {
-  return getAccessor().fixMountedFlagAndFixPreallocationClone();
+bool ReactNativeFeatureFlags::fixStoppedSurfaceRemoveDeleteTreeUIFrameCallbackLeak() {
+  return getAccessor().fixStoppedSurfaceRemoveDeleteTreeUIFrameCallbackLeak();
 }
 
 bool ReactNativeFeatureFlags::forceBatchingMountItemsOnAndroid() {
@@ -87,6 +87,10 @@ bool ReactNativeFeatureFlags::lazyAnimationCallbacks() {
 
 bool ReactNativeFeatureFlags::preventDoubleTextMeasure() {
   return getAccessor().preventDoubleTextMeasure();
+}
+
+bool ReactNativeFeatureFlags::setAndroidLayoutDirection() {
+  return getAccessor().setAndroidLayoutDirection();
 }
 
 bool ReactNativeFeatureFlags::useModernRuntimeScheduler() {

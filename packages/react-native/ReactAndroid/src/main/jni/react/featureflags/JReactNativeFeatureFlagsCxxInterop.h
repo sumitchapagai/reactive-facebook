@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @generated SignedSource<<5065ed4400b76ae62f43ec64ee03ebd2>>
+ * @generated SignedSource<<d2f016e3a0648f6fd0b6c1f45b9a1f62>>
  */
 
 /**
@@ -63,7 +63,7 @@ class JReactNativeFeatureFlagsCxxInterop
   static bool enableUIConsistency(
     facebook::jni::alias_ref<JReactNativeFeatureFlagsCxxInterop>);
 
-  static bool fixMountedFlagAndFixPreallocationClone(
+  static bool fixStoppedSurfaceRemoveDeleteTreeUIFrameCallbackLeak(
     facebook::jni::alias_ref<JReactNativeFeatureFlagsCxxInterop>);
 
   static bool forceBatchingMountItemsOnAndroid(
@@ -79,6 +79,9 @@ class JReactNativeFeatureFlagsCxxInterop
     facebook::jni::alias_ref<JReactNativeFeatureFlagsCxxInterop>);
 
   static bool preventDoubleTextMeasure(
+    facebook::jni::alias_ref<JReactNativeFeatureFlagsCxxInterop>);
+
+  static bool setAndroidLayoutDirection(
     facebook::jni::alias_ref<JReactNativeFeatureFlagsCxxInterop>);
 
   static bool useModernRuntimeScheduler(

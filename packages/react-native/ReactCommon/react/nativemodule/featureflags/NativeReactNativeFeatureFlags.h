@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @generated SignedSource<<acbc14ea4c336f7e8e3c9e2252b57e77>>
+ * @generated SignedSource<<9653b7699416f1702ba2f5e8b8f6da93>>
  */
 
 /**
@@ -57,7 +57,7 @@ class NativeReactNativeFeatureFlags
 
   bool enableUIConsistency(jsi::Runtime& runtime);
 
-  bool fixMountedFlagAndFixPreallocationClone(jsi::Runtime& runtime);
+  bool fixStoppedSurfaceRemoveDeleteTreeUIFrameCallbackLeak(jsi::Runtime& runtime);
 
   bool forceBatchingMountItemsOnAndroid(jsi::Runtime& runtime);
 
@@ -68,6 +68,8 @@ class NativeReactNativeFeatureFlags
   bool lazyAnimationCallbacks(jsi::Runtime& runtime);
 
   bool preventDoubleTextMeasure(jsi::Runtime& runtime);
+
+  bool setAndroidLayoutDirection(jsi::Runtime& runtime);
 
   bool useModernRuntimeScheduler(jsi::Runtime& runtime);
 

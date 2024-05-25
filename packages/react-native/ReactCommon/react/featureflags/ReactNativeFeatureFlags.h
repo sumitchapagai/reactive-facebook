@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @generated SignedSource<<b081516c5b1aa804ec4f444f48773fbb>>
+ * @generated SignedSource<<c53481eb714387bf0a390fba1c02c331>>
  */
 
 /**
@@ -93,9 +93,9 @@ class ReactNativeFeatureFlags {
   RN_EXPORT static bool enableUIConsistency();
 
   /**
-   * Splits hasBeenMounted and promoted.
+   * Fixes a leak in SurfaceMountingManager.mRemoveDeleteTreeUIFrameCallback
    */
-  RN_EXPORT static bool fixMountedFlagAndFixPreallocationClone();
+  RN_EXPORT static bool fixStoppedSurfaceRemoveDeleteTreeUIFrameCallbackLeak();
 
   /**
    * Forces the mounting layer on Android to always batch mount items instead of dispatching them immediately. This might fix some crashes related to synchronous state updates, where some views dispatch state updates during mount.
@@ -121,6 +121,11 @@ class ReactNativeFeatureFlags {
    * When enabled, ParagraphShadowNode will no longer call measure twice.
    */
   RN_EXPORT static bool preventDoubleTextMeasure();
+
+  /**
+   * Propagate layout direction to Android views.
+   */
+  RN_EXPORT static bool setAndroidLayoutDirection();
 
   /**
    * When enabled, it uses the modern fork of RuntimeScheduler that allows scheduling tasks with priorities from any thread.

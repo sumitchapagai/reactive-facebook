@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @generated SignedSource<<34806c87ad1769ee08a5322994b0bb1b>>
+ * @generated SignedSource<<e68ae1e7b4f0d7714722fb7b442c66c9>>
  */
 
 /**
@@ -50,7 +50,7 @@ public object ReactNativeFeatureFlagsCxxInterop {
 
   @DoNotStrip @JvmStatic public external fun enableUIConsistency(): Boolean
 
-  @DoNotStrip @JvmStatic public external fun fixMountedFlagAndFixPreallocationClone(): Boolean
+  @DoNotStrip @JvmStatic public external fun fixStoppedSurfaceRemoveDeleteTreeUIFrameCallbackLeak(): Boolean
 
   @DoNotStrip @JvmStatic public external fun forceBatchingMountItemsOnAndroid(): Boolean
 
@@ -61,6 +61,8 @@ public object ReactNativeFeatureFlagsCxxInterop {
   @DoNotStrip @JvmStatic public external fun lazyAnimationCallbacks(): Boolean
 
   @DoNotStrip @JvmStatic public external fun preventDoubleTextMeasure(): Boolean
+
+  @DoNotStrip @JvmStatic public external fun setAndroidLayoutDirection(): Boolean
 
   @DoNotStrip @JvmStatic public external fun useModernRuntimeScheduler(): Boolean
 

@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @generated SignedSource<<e6a248df3e57d36319d9a32bd49dfa5a>>
+ * @generated SignedSource<<64ab913d2c940a7abfcd2aac32be1b72>>
  */
 
 /**
@@ -45,7 +45,7 @@ public open class ReactNativeFeatureFlagsDefaults : ReactNativeFeatureFlagsProvi
 
   override fun enableUIConsistency(): Boolean = false
 
-  override fun fixMountedFlagAndFixPreallocationClone(): Boolean = false
+  override fun fixStoppedSurfaceRemoveDeleteTreeUIFrameCallbackLeak(): Boolean = false
 
   override fun forceBatchingMountItemsOnAndroid(): Boolean = false
 
@@ -55,7 +55,9 @@ public open class ReactNativeFeatureFlagsDefaults : ReactNativeFeatureFlagsProvi
 
   override fun lazyAnimationCallbacks(): Boolean = false
 
-  override fun preventDoubleTextMeasure(): Boolean = false
+  override fun preventDoubleTextMeasure(): Boolean = true
+
+  override fun setAndroidLayoutDirection(): Boolean = false
 
   override fun useModernRuntimeScheduler(): Boolean = false
 

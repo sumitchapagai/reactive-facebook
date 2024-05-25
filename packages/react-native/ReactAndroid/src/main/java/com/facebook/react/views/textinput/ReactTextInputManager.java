@@ -1120,17 +1120,12 @@ public class ReactTextInputManager extends BaseViewManager<ReactEditText, Layout
       }
 
       // The event that contains the event counter and updates it must be sent first.
-      // TODO: t7936714 merge these events
       mEventDispatcher.dispatchEvent(
           new ReactTextChangedEvent(
               mSurfaceId,
               mEditText.getId(),
               s.toString(),
               mEditText.incrementAndGetEventCounter()));
-
-      mEventDispatcher.dispatchEvent(
-          new ReactTextInputEvent(
-              mSurfaceId, mEditText.getId(), newText, oldText, start, start + before));
     }
 
     @Override
@@ -1321,7 +1316,8 @@ public class ReactTextInputManager extends BaseViewManager<ReactEditText, Layout
                 0, // can't get content width
                 0, // can't get content height
                 mReactEditText.getWidth(),
-                mReactEditText.getHeight());
+                mReactEditText.getHeight(),
+                false);
 
         mEventDispatcher.dispatchEvent(event);
 

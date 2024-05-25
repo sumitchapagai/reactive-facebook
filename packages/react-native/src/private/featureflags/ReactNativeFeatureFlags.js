@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @generated SignedSource<<aff7e65ca1f679a79456b2b622dc070f>>
+ * @generated SignedSource<<63e7a8952026600cb58367e9c70fb68d>>
  * @flow strict-local
  */
 
@@ -51,12 +51,13 @@ export type ReactNativeFeatureFlags = {
   enableMicrotasks: Getter<boolean>,
   enableSynchronousStateUpdates: Getter<boolean>,
   enableUIConsistency: Getter<boolean>,
-  fixMountedFlagAndFixPreallocationClone: Getter<boolean>,
+  fixStoppedSurfaceRemoveDeleteTreeUIFrameCallbackLeak: Getter<boolean>,
   forceBatchingMountItemsOnAndroid: Getter<boolean>,
   inspectorEnableCxxInspectorPackagerConnection: Getter<boolean>,
   inspectorEnableModernCDPRegistry: Getter<boolean>,
   lazyAnimationCallbacks: Getter<boolean>,
   preventDoubleTextMeasure: Getter<boolean>,
+  setAndroidLayoutDirection: Getter<boolean>,
   useModernRuntimeScheduler: Getter<boolean>,
   useNativeViewConfigsInBridgelessMode: Getter<boolean>,
   useStateAlignmentMechanism: Getter<boolean>,
@@ -147,9 +148,9 @@ export const enableSynchronousStateUpdates: Getter<boolean> = createNativeFlagGe
  */
 export const enableUIConsistency: Getter<boolean> = createNativeFlagGetter('enableUIConsistency', false);
 /**
- * Splits hasBeenMounted and promoted.
+ * Fixes a leak in SurfaceMountingManager.mRemoveDeleteTreeUIFrameCallback
  */
-export const fixMountedFlagAndFixPreallocationClone: Getter<boolean> = createNativeFlagGetter('fixMountedFlagAndFixPreallocationClone', false);
+export const fixStoppedSurfaceRemoveDeleteTreeUIFrameCallbackLeak: Getter<boolean> = createNativeFlagGetter('fixStoppedSurfaceRemoveDeleteTreeUIFrameCallbackLeak', false);
 /**
  * Forces the mounting layer on Android to always batch mount items instead of dispatching them immediately. This might fix some crashes related to synchronous state updates, where some views dispatch state updates during mount.
  */
@@ -169,7 +170,11 @@ export const lazyAnimationCallbacks: Getter<boolean> = createNativeFlagGetter('l
 /**
  * When enabled, ParagraphShadowNode will no longer call measure twice.
  */
-export const preventDoubleTextMeasure: Getter<boolean> = createNativeFlagGetter('preventDoubleTextMeasure', false);
+export const preventDoubleTextMeasure: Getter<boolean> = createNativeFlagGetter('preventDoubleTextMeasure', true);
+/**
+ * Propagate layout direction to Android views.
+ */
+export const setAndroidLayoutDirection: Getter<boolean> = createNativeFlagGetter('setAndroidLayoutDirection', false);
 /**
  * When enabled, it uses the modern fork of RuntimeScheduler that allows scheduling tasks with priorities from any thread.
  */

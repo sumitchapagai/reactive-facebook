@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @generated SignedSource<<70cc98f74b676cb12f4e510b88d551aa>>
+ * @generated SignedSource<<5d0f0b1953af3f0dd2ee66fed2b1115a>>
  */
 
 /**
@@ -105,9 +105,9 @@ class ReactNativeFeatureFlagsProviderHolder
     return method(javaProvider_);
   }
 
-  bool fixMountedFlagAndFixPreallocationClone() override {
+  bool fixStoppedSurfaceRemoveDeleteTreeUIFrameCallbackLeak() override {
     static const auto method =
-        getReactNativeFeatureFlagsProviderJavaClass()->getMethod<jboolean()>("fixMountedFlagAndFixPreallocationClone");
+        getReactNativeFeatureFlagsProviderJavaClass()->getMethod<jboolean()>("fixStoppedSurfaceRemoveDeleteTreeUIFrameCallbackLeak");
     return method(javaProvider_);
   }
 
@@ -138,6 +138,12 @@ class ReactNativeFeatureFlagsProviderHolder
   bool preventDoubleTextMeasure() override {
     static const auto method =
         getReactNativeFeatureFlagsProviderJavaClass()->getMethod<jboolean()>("preventDoubleTextMeasure");
+    return method(javaProvider_);
+  }
+
+  bool setAndroidLayoutDirection() override {
+    static const auto method =
+        getReactNativeFeatureFlagsProviderJavaClass()->getMethod<jboolean()>("setAndroidLayoutDirection");
     return method(javaProvider_);
   }
 
@@ -218,9 +224,9 @@ bool JReactNativeFeatureFlagsCxxInterop::enableUIConsistency(
   return ReactNativeFeatureFlags::enableUIConsistency();
 }
 
-bool JReactNativeFeatureFlagsCxxInterop::fixMountedFlagAndFixPreallocationClone(
+bool JReactNativeFeatureFlagsCxxInterop::fixStoppedSurfaceRemoveDeleteTreeUIFrameCallbackLeak(
     facebook::jni::alias_ref<JReactNativeFeatureFlagsCxxInterop> /*unused*/) {
-  return ReactNativeFeatureFlags::fixMountedFlagAndFixPreallocationClone();
+  return ReactNativeFeatureFlags::fixStoppedSurfaceRemoveDeleteTreeUIFrameCallbackLeak();
 }
 
 bool JReactNativeFeatureFlagsCxxInterop::forceBatchingMountItemsOnAndroid(
@@ -246,6 +252,11 @@ bool JReactNativeFeatureFlagsCxxInterop::lazyAnimationCallbacks(
 bool JReactNativeFeatureFlagsCxxInterop::preventDoubleTextMeasure(
     facebook::jni::alias_ref<JReactNativeFeatureFlagsCxxInterop> /*unused*/) {
   return ReactNativeFeatureFlags::preventDoubleTextMeasure();
+}
+
+bool JReactNativeFeatureFlagsCxxInterop::setAndroidLayoutDirection(
+    facebook::jni::alias_ref<JReactNativeFeatureFlagsCxxInterop> /*unused*/) {
+  return ReactNativeFeatureFlags::setAndroidLayoutDirection();
 }
 
 bool JReactNativeFeatureFlagsCxxInterop::useModernRuntimeScheduler(
@@ -314,8 +325,8 @@ void JReactNativeFeatureFlagsCxxInterop::registerNatives() {
         "enableUIConsistency",
         JReactNativeFeatureFlagsCxxInterop::enableUIConsistency),
       makeNativeMethod(
-        "fixMountedFlagAndFixPreallocationClone",
-        JReactNativeFeatureFlagsCxxInterop::fixMountedFlagAndFixPreallocationClone),
+        "fixStoppedSurfaceRemoveDeleteTreeUIFrameCallbackLeak",
+        JReactNativeFeatureFlagsCxxInterop::fixStoppedSurfaceRemoveDeleteTreeUIFrameCallbackLeak),
       makeNativeMethod(
         "forceBatchingMountItemsOnAndroid",
         JReactNativeFeatureFlagsCxxInterop::forceBatchingMountItemsOnAndroid),
@@ -331,6 +342,9 @@ void JReactNativeFeatureFlagsCxxInterop::registerNatives() {
       makeNativeMethod(
         "preventDoubleTextMeasure",
         JReactNativeFeatureFlagsCxxInterop::preventDoubleTextMeasure),
+      makeNativeMethod(
+        "setAndroidLayoutDirection",
+        JReactNativeFeatureFlagsCxxInterop::setAndroidLayoutDirection),
       makeNativeMethod(
         "useModernRuntimeScheduler",
         JReactNativeFeatureFlagsCxxInterop::useModernRuntimeScheduler),

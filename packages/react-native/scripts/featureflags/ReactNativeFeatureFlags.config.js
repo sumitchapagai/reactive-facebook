@@ -88,9 +88,10 @@ const definitions: FeatureFlagDefinitions = {
       description:
         'Ensures that JavaScript always has a consistent view of the state of the UI (e.g.: commits done in other threads are not immediately propagated to JS during its execution).',
     },
-    fixMountedFlagAndFixPreallocationClone: {
+    fixStoppedSurfaceRemoveDeleteTreeUIFrameCallbackLeak: {
       defaultValue: false,
-      description: 'Splits hasBeenMounted and promoted.',
+      description:
+        'Fixes a leak in SurfaceMountingManager.mRemoveDeleteTreeUIFrameCallback',
     },
     forceBatchingMountItemsOnAndroid: {
       defaultValue: false,
@@ -113,9 +114,13 @@ const definitions: FeatureFlagDefinitions = {
         'Only enqueue Choreographer calls if there is an ongoing animation, instead of enqueueing every frame.',
     },
     preventDoubleTextMeasure: {
-      defaultValue: false,
+      defaultValue: true,
       description:
         'When enabled, ParagraphShadowNode will no longer call measure twice.',
+    },
+    setAndroidLayoutDirection: {
+      defaultValue: false,
+      description: 'Propagate layout direction to Android views.',
     },
     useModernRuntimeScheduler: {
       defaultValue: false,

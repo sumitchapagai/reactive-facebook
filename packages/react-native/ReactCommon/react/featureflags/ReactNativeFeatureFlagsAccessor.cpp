@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @generated SignedSource<<2091c7b1d7d19d8967a6bb5ebb2ac76f>>
+ * @generated SignedSource<<2e874e6368f85709ecbb4c1e086ae7a9>>
  */
 
 /**
@@ -227,8 +227,8 @@ bool ReactNativeFeatureFlagsAccessor::enableUIConsistency() {
   return flagValue.value();
 }
 
-bool ReactNativeFeatureFlagsAccessor::fixMountedFlagAndFixPreallocationClone() {
-  auto flagValue = fixMountedFlagAndFixPreallocationClone_.load();
+bool ReactNativeFeatureFlagsAccessor::fixStoppedSurfaceRemoveDeleteTreeUIFrameCallbackLeak() {
+  auto flagValue = fixStoppedSurfaceRemoveDeleteTreeUIFrameCallbackLeak_.load();
 
   if (!flagValue.has_value()) {
     // This block is not exclusive but it is not necessary.
@@ -236,10 +236,10 @@ bool ReactNativeFeatureFlagsAccessor::fixMountedFlagAndFixPreallocationClone() {
     // be accessing the provider multiple times but the end state of this
     // instance and the returned flag value would be the same.
 
-    markFlagAsAccessed(11, "fixMountedFlagAndFixPreallocationClone");
+    markFlagAsAccessed(11, "fixStoppedSurfaceRemoveDeleteTreeUIFrameCallbackLeak");
 
-    flagValue = currentProvider_->fixMountedFlagAndFixPreallocationClone();
-    fixMountedFlagAndFixPreallocationClone_ = flagValue;
+    flagValue = currentProvider_->fixStoppedSurfaceRemoveDeleteTreeUIFrameCallbackLeak();
+    fixStoppedSurfaceRemoveDeleteTreeUIFrameCallbackLeak_ = flagValue;
   }
 
   return flagValue.value();
@@ -335,6 +335,24 @@ bool ReactNativeFeatureFlagsAccessor::preventDoubleTextMeasure() {
   return flagValue.value();
 }
 
+bool ReactNativeFeatureFlagsAccessor::setAndroidLayoutDirection() {
+  auto flagValue = setAndroidLayoutDirection_.load();
+
+  if (!flagValue.has_value()) {
+    // This block is not exclusive but it is not necessary.
+    // If multiple threads try to initialize the feature flag, we would only
+    // be accessing the provider multiple times but the end state of this
+    // instance and the returned flag value would be the same.
+
+    markFlagAsAccessed(17, "setAndroidLayoutDirection");
+
+    flagValue = currentProvider_->setAndroidLayoutDirection();
+    setAndroidLayoutDirection_ = flagValue;
+  }
+
+  return flagValue.value();
+}
+
 bool ReactNativeFeatureFlagsAccessor::useModernRuntimeScheduler() {
   auto flagValue = useModernRuntimeScheduler_.load();
 
@@ -344,7 +362,7 @@ bool ReactNativeFeatureFlagsAccessor::useModernRuntimeScheduler() {
     // be accessing the provider multiple times but the end state of this
     // instance and the returned flag value would be the same.
 
-    markFlagAsAccessed(17, "useModernRuntimeScheduler");
+    markFlagAsAccessed(18, "useModernRuntimeScheduler");
 
     flagValue = currentProvider_->useModernRuntimeScheduler();
     useModernRuntimeScheduler_ = flagValue;
@@ -362,7 +380,7 @@ bool ReactNativeFeatureFlagsAccessor::useNativeViewConfigsInBridgelessMode() {
     // be accessing the provider multiple times but the end state of this
     // instance and the returned flag value would be the same.
 
-    markFlagAsAccessed(18, "useNativeViewConfigsInBridgelessMode");
+    markFlagAsAccessed(19, "useNativeViewConfigsInBridgelessMode");
 
     flagValue = currentProvider_->useNativeViewConfigsInBridgelessMode();
     useNativeViewConfigsInBridgelessMode_ = flagValue;
@@ -380,7 +398,7 @@ bool ReactNativeFeatureFlagsAccessor::useStateAlignmentMechanism() {
     // be accessing the provider multiple times but the end state of this
     // instance and the returned flag value would be the same.
 
-    markFlagAsAccessed(19, "useStateAlignmentMechanism");
+    markFlagAsAccessed(20, "useStateAlignmentMechanism");
 
     flagValue = currentProvider_->useStateAlignmentMechanism();
     useStateAlignmentMechanism_ = flagValue;

@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @generated SignedSource<<36558176ca3a38b086a50ac90cf08c67>>
+ * @generated SignedSource<<5323fb8be9ec7ee6ac43d7f01bca020e>>
  */
 
 /**
@@ -31,12 +31,13 @@ public class ReactNativeFeatureFlagsCxxAccessor : ReactNativeFeatureFlagsAccesso
   private var enableMicrotasksCache: Boolean? = null
   private var enableSynchronousStateUpdatesCache: Boolean? = null
   private var enableUIConsistencyCache: Boolean? = null
-  private var fixMountedFlagAndFixPreallocationCloneCache: Boolean? = null
+  private var fixStoppedSurfaceRemoveDeleteTreeUIFrameCallbackLeakCache: Boolean? = null
   private var forceBatchingMountItemsOnAndroidCache: Boolean? = null
   private var inspectorEnableCxxInspectorPackagerConnectionCache: Boolean? = null
   private var inspectorEnableModernCDPRegistryCache: Boolean? = null
   private var lazyAnimationCallbacksCache: Boolean? = null
   private var preventDoubleTextMeasureCache: Boolean? = null
+  private var setAndroidLayoutDirectionCache: Boolean? = null
   private var useModernRuntimeSchedulerCache: Boolean? = null
   private var useNativeViewConfigsInBridgelessModeCache: Boolean? = null
   private var useStateAlignmentMechanismCache: Boolean? = null
@@ -140,11 +141,11 @@ public class ReactNativeFeatureFlagsCxxAccessor : ReactNativeFeatureFlagsAccesso
     return cached
   }
 
-  override fun fixMountedFlagAndFixPreallocationClone(): Boolean {
-    var cached = fixMountedFlagAndFixPreallocationCloneCache
+  override fun fixStoppedSurfaceRemoveDeleteTreeUIFrameCallbackLeak(): Boolean {
+    var cached = fixStoppedSurfaceRemoveDeleteTreeUIFrameCallbackLeakCache
     if (cached == null) {
-      cached = ReactNativeFeatureFlagsCxxInterop.fixMountedFlagAndFixPreallocationClone()
-      fixMountedFlagAndFixPreallocationCloneCache = cached
+      cached = ReactNativeFeatureFlagsCxxInterop.fixStoppedSurfaceRemoveDeleteTreeUIFrameCallbackLeak()
+      fixStoppedSurfaceRemoveDeleteTreeUIFrameCallbackLeakCache = cached
     }
     return cached
   }
@@ -190,6 +191,15 @@ public class ReactNativeFeatureFlagsCxxAccessor : ReactNativeFeatureFlagsAccesso
     if (cached == null) {
       cached = ReactNativeFeatureFlagsCxxInterop.preventDoubleTextMeasure()
       preventDoubleTextMeasureCache = cached
+    }
+    return cached
+  }
+
+  override fun setAndroidLayoutDirection(): Boolean {
+    var cached = setAndroidLayoutDirectionCache
+    if (cached == null) {
+      cached = ReactNativeFeatureFlagsCxxInterop.setAndroidLayoutDirection()
+      setAndroidLayoutDirectionCache = cached
     }
     return cached
   }

@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @generated SignedSource<<8c9f24f3410f42027e619c911625944b>>
+ * @generated SignedSource<<1fdca69483db9e0fc9f9ab7a2cd9ff85>>
  */
 
 /**
@@ -92,9 +92,9 @@ bool NativeReactNativeFeatureFlags::enableUIConsistency(
   return ReactNativeFeatureFlags::enableUIConsistency();
 }
 
-bool NativeReactNativeFeatureFlags::fixMountedFlagAndFixPreallocationClone(
+bool NativeReactNativeFeatureFlags::fixStoppedSurfaceRemoveDeleteTreeUIFrameCallbackLeak(
     jsi::Runtime& /*runtime*/) {
-  return ReactNativeFeatureFlags::fixMountedFlagAndFixPreallocationClone();
+  return ReactNativeFeatureFlags::fixStoppedSurfaceRemoveDeleteTreeUIFrameCallbackLeak();
 }
 
 bool NativeReactNativeFeatureFlags::forceBatchingMountItemsOnAndroid(
@@ -120,6 +120,11 @@ bool NativeReactNativeFeatureFlags::lazyAnimationCallbacks(
 bool NativeReactNativeFeatureFlags::preventDoubleTextMeasure(
     jsi::Runtime& /*runtime*/) {
   return ReactNativeFeatureFlags::preventDoubleTextMeasure();
+}
+
+bool NativeReactNativeFeatureFlags::setAndroidLayoutDirection(
+    jsi::Runtime& /*runtime*/) {
+  return ReactNativeFeatureFlags::setAndroidLayoutDirection();
 }
 
 bool NativeReactNativeFeatureFlags::useModernRuntimeScheduler(
