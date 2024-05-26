@@ -27,12 +27,12 @@ public class DebuggingOverlayManager : SimpleViewManager<DebuggingOverlay>() {
           return
         }
 
-        val providedTraceUpdates = args.getArray(0)
+        val providedTraceUpdates = args.getArray(0)!!
         val formattedTraceUpdates = mutableListOf<TraceUpdate>()
 
         var successfullyParsedPayload = true
         for (i in 0 until providedTraceUpdates.size()) {
-          val traceUpdate = providedTraceUpdates.getMap(i)
+          val traceUpdate = providedTraceUpdates.getMap(i)!!
           val serializedRectangle = traceUpdate.getMap("rectangle")
           if (serializedRectangle == null) {
             ReactSoftExceptionLogger.logSoftException(
@@ -86,12 +86,12 @@ public class DebuggingOverlayManager : SimpleViewManager<DebuggingOverlay>() {
           return
         }
 
-        val providedElements = args.getArray(0)
+        val providedElements = args.getArray(0)!!
         val elementsRectangles = mutableListOf<RectF>()
 
         var successfullyParsedPayload = true
         for (i in 0 until providedElements.size()) {
-          val element = providedElements.getMap(i)
+          val element = providedElements.getMap(i)!!
 
           try {
             val left = element.getDouble("x").toFloat()
