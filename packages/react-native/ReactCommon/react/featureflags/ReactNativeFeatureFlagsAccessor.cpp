@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @generated SignedSource<<2e874e6368f85709ecbb4c1e086ae7a9>>
+ * @generated SignedSource<<bf265572c103948adc9ff44022782e09>>
  */
 
 /**
@@ -263,8 +263,8 @@ bool ReactNativeFeatureFlagsAccessor::forceBatchingMountItemsOnAndroid() {
   return flagValue.value();
 }
 
-bool ReactNativeFeatureFlagsAccessor::inspectorEnableCxxInspectorPackagerConnection() {
-  auto flagValue = inspectorEnableCxxInspectorPackagerConnection_.load();
+bool ReactNativeFeatureFlagsAccessor::fuseboxEnabledDebug() {
+  auto flagValue = fuseboxEnabledDebug_.load();
 
   if (!flagValue.has_value()) {
     // This block is not exclusive but it is not necessary.
@@ -272,17 +272,17 @@ bool ReactNativeFeatureFlagsAccessor::inspectorEnableCxxInspectorPackagerConnect
     // be accessing the provider multiple times but the end state of this
     // instance and the returned flag value would be the same.
 
-    markFlagAsAccessed(13, "inspectorEnableCxxInspectorPackagerConnection");
+    markFlagAsAccessed(13, "fuseboxEnabledDebug");
 
-    flagValue = currentProvider_->inspectorEnableCxxInspectorPackagerConnection();
-    inspectorEnableCxxInspectorPackagerConnection_ = flagValue;
+    flagValue = currentProvider_->fuseboxEnabledDebug();
+    fuseboxEnabledDebug_ = flagValue;
   }
 
   return flagValue.value();
 }
 
-bool ReactNativeFeatureFlagsAccessor::inspectorEnableModernCDPRegistry() {
-  auto flagValue = inspectorEnableModernCDPRegistry_.load();
+bool ReactNativeFeatureFlagsAccessor::fuseboxEnabledRelease() {
+  auto flagValue = fuseboxEnabledRelease_.load();
 
   if (!flagValue.has_value()) {
     // This block is not exclusive but it is not necessary.
@@ -290,10 +290,10 @@ bool ReactNativeFeatureFlagsAccessor::inspectorEnableModernCDPRegistry() {
     // be accessing the provider multiple times but the end state of this
     // instance and the returned flag value would be the same.
 
-    markFlagAsAccessed(14, "inspectorEnableModernCDPRegistry");
+    markFlagAsAccessed(14, "fuseboxEnabledRelease");
 
-    flagValue = currentProvider_->inspectorEnableModernCDPRegistry();
-    inspectorEnableModernCDPRegistry_ = flagValue;
+    flagValue = currentProvider_->fuseboxEnabledRelease();
+    fuseboxEnabledRelease_ = flagValue;
   }
 
   return flagValue.value();

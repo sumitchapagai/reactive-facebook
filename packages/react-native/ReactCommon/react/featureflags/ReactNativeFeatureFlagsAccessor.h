@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @generated SignedSource<<7d1c4c90d5e1feb0015376f20943ee51>>
+ * @generated SignedSource<<d42b9949ba1bedd690893c8c34ac6a2b>>
  */
 
 /**
@@ -44,8 +44,8 @@ class ReactNativeFeatureFlagsAccessor {
   bool enableUIConsistency();
   bool fixStoppedSurfaceRemoveDeleteTreeUIFrameCallbackLeak();
   bool forceBatchingMountItemsOnAndroid();
-  bool inspectorEnableCxxInspectorPackagerConnection();
-  bool inspectorEnableModernCDPRegistry();
+  bool fuseboxEnabledDebug();
+  bool fuseboxEnabledRelease();
   bool lazyAnimationCallbacks();
   bool preventDoubleTextMeasure();
   bool setAndroidLayoutDirection();
@@ -77,8 +77,8 @@ class ReactNativeFeatureFlagsAccessor {
   std::atomic<std::optional<bool>> enableUIConsistency_;
   std::atomic<std::optional<bool>> fixStoppedSurfaceRemoveDeleteTreeUIFrameCallbackLeak_;
   std::atomic<std::optional<bool>> forceBatchingMountItemsOnAndroid_;
-  std::atomic<std::optional<bool>> inspectorEnableCxxInspectorPackagerConnection_;
-  std::atomic<std::optional<bool>> inspectorEnableModernCDPRegistry_;
+  std::atomic<std::optional<bool>> fuseboxEnabledDebug_;
+  std::atomic<std::optional<bool>> fuseboxEnabledRelease_;
   std::atomic<std::optional<bool>> lazyAnimationCallbacks_;
   std::atomic<std::optional<bool>> preventDoubleTextMeasure_;
   std::atomic<std::optional<bool>> setAndroidLayoutDirection_;

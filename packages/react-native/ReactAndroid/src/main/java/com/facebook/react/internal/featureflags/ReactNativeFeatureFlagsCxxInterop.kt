@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @generated SignedSource<<e68ae1e7b4f0d7714722fb7b442c66c9>>
+ * @generated SignedSource<<8df962abc44ac4368591f34862ccf69e>>
  */
 
 /**
@@ -54,9 +54,9 @@ public object ReactNativeFeatureFlagsCxxInterop {
 
   @DoNotStrip @JvmStatic public external fun forceBatchingMountItemsOnAndroid(): Boolean
 
-  @DoNotStrip @JvmStatic public external fun inspectorEnableCxxInspectorPackagerConnection(): Boolean
+  @DoNotStrip @JvmStatic public external fun fuseboxEnabledDebug(): Boolean
 
-  @DoNotStrip @JvmStatic public external fun inspectorEnableModernCDPRegistry(): Boolean
+  @DoNotStrip @JvmStatic public external fun fuseboxEnabledRelease(): Boolean
 
   @DoNotStrip @JvmStatic public external fun lazyAnimationCallbacks(): Boolean
 

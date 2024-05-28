@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @generated SignedSource<<00a695402781a9f3c45ba0594a785b57>>
+ * @generated SignedSource<<5abf40ebbabb3c0bebead668c1b24ff9>>
  */
 
 /**
@@ -37,8 +37,8 @@ public class ReactNativeFeatureFlagsLocalAccessor : ReactNativeFeatureFlagsAcces
   private var enableUIConsistencyCache: Boolean? = null
   private var fixStoppedSurfaceRemoveDeleteTreeUIFrameCallbackLeakCache: Boolean? = null
   private var forceBatchingMountItemsOnAndroidCache: Boolean? = null
-  private var inspectorEnableCxxInspectorPackagerConnectionCache: Boolean? = null
-  private var inspectorEnableModernCDPRegistryCache: Boolean? = null
+  private var fuseboxEnabledDebugCache: Boolean? = null
+  private var fuseboxEnabledReleaseCache: Boolean? = null
   private var lazyAnimationCallbacksCache: Boolean? = null
   private var preventDoubleTextMeasureCache: Boolean? = null
   private var setAndroidLayoutDirectionCache: Boolean? = null
@@ -176,22 +176,22 @@ public class ReactNativeFeatureFlagsLocalAccessor : ReactNativeFeatureFlagsAcces
     return cached
   }
 
-  override fun inspectorEnableCxxInspectorPackagerConnection(): Boolean {
-    var cached = inspectorEnableCxxInspectorPackagerConnectionCache
+  override fun fuseboxEnabledDebug(): Boolean {
+    var cached = fuseboxEnabledDebugCache
     if (cached == null) {
-      cached = currentProvider.inspectorEnableCxxInspectorPackagerConnection()
-      accessedFeatureFlags.add("inspectorEnableCxxInspectorPackagerConnection")
-      inspectorEnableCxxInspectorPackagerConnectionCache = cached
+      cached = currentProvider.fuseboxEnabledDebug()
+      accessedFeatureFlags.add("fuseboxEnabledDebug")
+      fuseboxEnabledDebugCache = cached
     }
     return cached
   }
 
-  override fun inspectorEnableModernCDPRegistry(): Boolean {
-    var cached = inspectorEnableModernCDPRegistryCache
+  override fun fuseboxEnabledRelease(): Boolean {
+    var cached = fuseboxEnabledReleaseCache
     if (cached == null) {
-      cached = currentProvider.inspectorEnableModernCDPRegistry()
-      accessedFeatureFlags.add("inspectorEnableModernCDPRegistry")
-      inspectorEnableModernCDPRegistryCache = cached
+      cached = currentProvider.fuseboxEnabledRelease()
+      accessedFeatureFlags.add("fuseboxEnabledRelease")
+      fuseboxEnabledReleaseCache = cached
     }
     return cached
   }

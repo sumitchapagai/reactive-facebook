@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @generated SignedSource<<64ab913d2c940a7abfcd2aac32be1b72>>
+ * @generated SignedSource<<b9067f03d9ae365120f8d6ef607354a6>>
  */
 
 /**
@@ -49,9 +49,9 @@ public open class ReactNativeFeatureFlagsDefaults : ReactNativeFeatureFlagsProvi
 
   override fun forceBatchingMountItemsOnAndroid(): Boolean = false
 
-  override fun inspectorEnableCxxInspectorPackagerConnection(): Boolean = false
+  override fun fuseboxEnabledDebug(): Boolean = false
 
-  override fun inspectorEnableModernCDPRegistry(): Boolean = false
+  override fun fuseboxEnabledRelease(): Boolean = false
 
   override fun lazyAnimationCallbacks(): Boolean = false
 

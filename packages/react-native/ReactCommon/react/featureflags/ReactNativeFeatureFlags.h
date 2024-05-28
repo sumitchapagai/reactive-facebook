@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @generated SignedSource<<c53481eb714387bf0a390fba1c02c331>>
+ * @generated SignedSource<<8fdad69a7bbf55bdf967292958de6f61>>
  */
 
 /**
@@ -103,14 +103,14 @@ class ReactNativeFeatureFlags {
   RN_EXPORT static bool forceBatchingMountItemsOnAndroid();
 
   /**
-   * Flag determining if the C++ implementation of InspectorPackagerConnection should be used instead of the per-platform one. This flag is global and should not be changed across React Host lifetimes.
+   * Flag determining if the React Native DevTools (Fusebox) CDP backend should be enabled in debug builds. This flag is global and should not be changed across React Host lifetimes.
    */
-  RN_EXPORT static bool inspectorEnableCxxInspectorPackagerConnection();
+  RN_EXPORT static bool fuseboxEnabledDebug();
 
   /**
-   * Flag determining if the modern CDP backend should be enabled. This flag is global and should not be changed across React Host lifetimes.
+   * Flag determining if the React Native DevTools (Fusebox) CDP backend should be enabled in release builds. This flag is global and should not be changed across React Host lifetimes.
    */
-  RN_EXPORT static bool inspectorEnableModernCDPRegistry();
+  RN_EXPORT static bool fuseboxEnabledRelease();
 
   /**
    * Only enqueue Choreographer calls if there is an ongoing animation, instead of enqueueing every frame.
