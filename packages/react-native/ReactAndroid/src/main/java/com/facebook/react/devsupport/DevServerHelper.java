@@ -214,7 +214,6 @@ public class DevServerHelper {
           mInspectorPackagerConnection =
               new CxxInspectorPackagerConnection(getInspectorDeviceUrl(), mPackageName);
         } else {
-          // TODO(T190163403): Remove legacy InspectorPackagerConnection
           mInspectorPackagerConnection =
               new InspectorPackagerConnection(getInspectorDeviceUrl(), mPackageName);
         }

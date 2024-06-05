@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @generated SignedSource<<8fdad69a7bbf55bdf967292958de6f61>>
+ * @generated SignedSource<<c4d88f9d9b8c6d5ca917d1ba9e53d9e8>>
  */
 
 /**
@@ -48,9 +48,9 @@ class ReactNativeFeatureFlags {
   RN_EXPORT static bool allowCollapsableChildren();
 
   /**
-   * To be used with batchRenderingUpdatesInEventLoop. When enbled, the Android mounting layer will concatenate pending transactions to ensure they're applied atomatically
+   * Adds support for recursively processing commits that mount synchronously (Android only).
    */
-  RN_EXPORT static bool androidEnablePendingFabricTransactions();
+  RN_EXPORT static bool allowRecursiveCommitsWithSynchronousMountOnAndroid();
 
   /**
    * When enabled, the RuntimeScheduler processing the event loop will batch all rendering updates and dispatch them together at the end of each iteration of the loop.
@@ -136,6 +136,16 @@ class ReactNativeFeatureFlags {
    * When enabled, the native view configs are used in bridgeless mode.
    */
   RN_EXPORT static bool useNativeViewConfigsInBridgelessMode();
+
+  /**
+   * When enabled, cloning shadow nodes within react native will update the reference held by the current JS fiber tree.
+   */
+  RN_EXPORT static bool useRuntimeShadowNodeReferenceUpdate();
+
+  /**
+   * When enabled, cloning shadow nodes during layout will update the reference held by the current JS fiber tree.
+   */
+  RN_EXPORT static bool useRuntimeShadowNodeReferenceUpdateOnLayout();
 
   /**
    * When enabled, it uses optimised state reconciliation algorithm.

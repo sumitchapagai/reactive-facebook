@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @generated SignedSource<<bf265572c103948adc9ff44022782e09>>
+ * @generated SignedSource<<5f27dd10824706ea065dc0340d46c409>>
  */
 
 /**
@@ -65,8 +65,8 @@ bool ReactNativeFeatureFlagsAccessor::allowCollapsableChildren() {
   return flagValue.value();
 }
 
-bool ReactNativeFeatureFlagsAccessor::androidEnablePendingFabricTransactions() {
-  auto flagValue = androidEnablePendingFabricTransactions_.load();
+bool ReactNativeFeatureFlagsAccessor::allowRecursiveCommitsWithSynchronousMountOnAndroid() {
+  auto flagValue = allowRecursiveCommitsWithSynchronousMountOnAndroid_.load();
 
   if (!flagValue.has_value()) {
     // This block is not exclusive but it is not necessary.
@@ -74,10 +74,10 @@ bool ReactNativeFeatureFlagsAccessor::androidEnablePendingFabricTransactions() {
     // be accessing the provider multiple times but the end state of this
     // instance and the returned flag value would be the same.
 
-    markFlagAsAccessed(2, "androidEnablePendingFabricTransactions");
+    markFlagAsAccessed(2, "allowRecursiveCommitsWithSynchronousMountOnAndroid");
 
-    flagValue = currentProvider_->androidEnablePendingFabricTransactions();
-    androidEnablePendingFabricTransactions_ = flagValue;
+    flagValue = currentProvider_->allowRecursiveCommitsWithSynchronousMountOnAndroid();
+    allowRecursiveCommitsWithSynchronousMountOnAndroid_ = flagValue;
   }
 
   return flagValue.value();
@@ -389,6 +389,42 @@ bool ReactNativeFeatureFlagsAccessor::useNativeViewConfigsInBridgelessMode() {
   return flagValue.value();
 }
 
+bool ReactNativeFeatureFlagsAccessor::useRuntimeShadowNodeReferenceUpdate() {
+  auto flagValue = useRuntimeShadowNodeReferenceUpdate_.load();
+
+  if (!flagValue.has_value()) {
+    // This block is not exclusive but it is not necessary.
+    // If multiple threads try to initialize the feature flag, we would only
+    // be accessing the provider multiple times but the end state of this
+    // instance and the returned flag value would be the same.
+
+    markFlagAsAccessed(20, "useRuntimeShadowNodeReferenceUpdate");
+
+    flagValue = currentProvider_->useRuntimeShadowNodeReferenceUpdate();
+    useRuntimeShadowNodeReferenceUpdate_ = flagValue;
+  }
+
+  return flagValue.value();
+}
+
+bool ReactNativeFeatureFlagsAccessor::useRuntimeShadowNodeReferenceUpdateOnLayout() {
+  auto flagValue = useRuntimeShadowNodeReferenceUpdateOnLayout_.load();
+
+  if (!flagValue.has_value()) {
+    // This block is not exclusive but it is not necessary.
+    // If multiple threads try to initialize the feature flag, we would only
+    // be accessing the provider multiple times but the end state of this
+    // instance and the returned flag value would be the same.
+
+    markFlagAsAccessed(21, "useRuntimeShadowNodeReferenceUpdateOnLayout");
+
+    flagValue = currentProvider_->useRuntimeShadowNodeReferenceUpdateOnLayout();
+    useRuntimeShadowNodeReferenceUpdateOnLayout_ = flagValue;
+  }
+
+  return flagValue.value();
+}
+
 bool ReactNativeFeatureFlagsAccessor::useStateAlignmentMechanism() {
   auto flagValue = useStateAlignmentMechanism_.load();
 
@@ -398,7 +434,7 @@ bool ReactNativeFeatureFlagsAccessor::useStateAlignmentMechanism() {
     // be accessing the provider multiple times but the end state of this
     // instance and the returned flag value would be the same.
 
-    markFlagAsAccessed(20, "useStateAlignmentMechanism");
+    markFlagAsAccessed(22, "useStateAlignmentMechanism");
 
     flagValue = currentProvider_->useStateAlignmentMechanism();
     useStateAlignmentMechanism_ = flagValue;

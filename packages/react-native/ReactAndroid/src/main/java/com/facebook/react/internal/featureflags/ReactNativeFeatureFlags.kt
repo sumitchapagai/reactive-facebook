@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @generated SignedSource<<d6c66f8e1322b8962191fa4af5c8da4b>>
+ * @generated SignedSource<<bc03d88b59af436b2db4f9048184a881>>
  */
 
 /**
@@ -41,10 +41,10 @@ public object ReactNativeFeatureFlags {
   public fun allowCollapsableChildren(): Boolean = accessor.allowCollapsableChildren()
 
   /**
-   * To be used with batchRenderingUpdatesInEventLoop. When enbled, the Android mounting layer will concatenate pending transactions to ensure they're applied atomatically
+   * Adds support for recursively processing commits that mount synchronously (Android only).
    */
   @JvmStatic
-  public fun androidEnablePendingFabricTransactions(): Boolean = accessor.androidEnablePendingFabricTransactions()
+  public fun allowRecursiveCommitsWithSynchronousMountOnAndroid(): Boolean = accessor.allowRecursiveCommitsWithSynchronousMountOnAndroid()
 
   /**
    * When enabled, the RuntimeScheduler processing the event loop will batch all rendering updates and dispatch them together at the end of each iteration of the loop.
@@ -147,6 +147,18 @@ public object ReactNativeFeatureFlags {
    */
   @JvmStatic
   public fun useNativeViewConfigsInBridgelessMode(): Boolean = accessor.useNativeViewConfigsInBridgelessMode()
+
+  /**
+   * When enabled, cloning shadow nodes within react native will update the reference held by the current JS fiber tree.
+   */
+  @JvmStatic
+  public fun useRuntimeShadowNodeReferenceUpdate(): Boolean = accessor.useRuntimeShadowNodeReferenceUpdate()
+
+  /**
+   * When enabled, cloning shadow nodes during layout will update the reference held by the current JS fiber tree.
+   */
+  @JvmStatic
+  public fun useRuntimeShadowNodeReferenceUpdateOnLayout(): Boolean = accessor.useRuntimeShadowNodeReferenceUpdateOnLayout()
 
   /**
    * When enabled, it uses optimised state reconciliation algorithm.

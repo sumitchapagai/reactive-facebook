@@ -44,10 +44,10 @@ const definitions: FeatureFlagDefinitions = {
       description:
         'Enables the differentiator to understand the "collapsableChildren" prop',
     },
-    androidEnablePendingFabricTransactions: {
+    allowRecursiveCommitsWithSynchronousMountOnAndroid: {
       defaultValue: false,
       description:
-        "To be used with batchRenderingUpdatesInEventLoop. When enbled, the Android mounting layer will concatenate pending transactions to ensure they're applied atomatically",
+        'Adds support for recursively processing commits that mount synchronously (Android only).',
     },
     batchRenderingUpdatesInEventLoop: {
       defaultValue: false,
@@ -131,6 +131,16 @@ const definitions: FeatureFlagDefinitions = {
       defaultValue: false,
       description:
         'When enabled, the native view configs are used in bridgeless mode.',
+    },
+    useRuntimeShadowNodeReferenceUpdate: {
+      defaultValue: false,
+      description:
+        'When enabled, cloning shadow nodes within react native will update the reference held by the current JS fiber tree.',
+    },
+    useRuntimeShadowNodeReferenceUpdateOnLayout: {
+      defaultValue: false,
+      description:
+        'When enabled, cloning shadow nodes during layout will update the reference held by the current JS fiber tree.',
     },
     useStateAlignmentMechanism: {
       defaultValue: false,

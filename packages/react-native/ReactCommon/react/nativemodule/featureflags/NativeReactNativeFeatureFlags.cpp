@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @generated SignedSource<<f554dd81f598e97429e2cba26613102e>>
+ * @generated SignedSource<<914fa03d71af61b82f05f005d3f3973d>>
  */
 
 /**
@@ -47,9 +47,9 @@ bool NativeReactNativeFeatureFlags::allowCollapsableChildren(
   return ReactNativeFeatureFlags::allowCollapsableChildren();
 }
 
-bool NativeReactNativeFeatureFlags::androidEnablePendingFabricTransactions(
+bool NativeReactNativeFeatureFlags::allowRecursiveCommitsWithSynchronousMountOnAndroid(
     jsi::Runtime& /*runtime*/) {
-  return ReactNativeFeatureFlags::androidEnablePendingFabricTransactions();
+  return ReactNativeFeatureFlags::allowRecursiveCommitsWithSynchronousMountOnAndroid();
 }
 
 bool NativeReactNativeFeatureFlags::batchRenderingUpdatesInEventLoop(
@@ -135,6 +135,16 @@ bool NativeReactNativeFeatureFlags::useModernRuntimeScheduler(
 bool NativeReactNativeFeatureFlags::useNativeViewConfigsInBridgelessMode(
     jsi::Runtime& /*runtime*/) {
   return ReactNativeFeatureFlags::useNativeViewConfigsInBridgelessMode();
+}
+
+bool NativeReactNativeFeatureFlags::useRuntimeShadowNodeReferenceUpdate(
+    jsi::Runtime& /*runtime*/) {
+  return ReactNativeFeatureFlags::useRuntimeShadowNodeReferenceUpdate();
+}
+
+bool NativeReactNativeFeatureFlags::useRuntimeShadowNodeReferenceUpdateOnLayout(
+    jsi::Runtime& /*runtime*/) {
+  return ReactNativeFeatureFlags::useRuntimeShadowNodeReferenceUpdateOnLayout();
 }
 
 bool NativeReactNativeFeatureFlags::useStateAlignmentMechanism(

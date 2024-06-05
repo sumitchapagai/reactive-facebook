@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @generated SignedSource<<4267f2de5ad71437875b03a26ac80d13>>
+ * @generated SignedSource<<43b256d5f58743df52f579dc69721083>>
  */
 
 /**
@@ -51,9 +51,9 @@ class ReactNativeFeatureFlagsProviderHolder
     return method(javaProvider_);
   }
 
-  bool androidEnablePendingFabricTransactions() override {
+  bool allowRecursiveCommitsWithSynchronousMountOnAndroid() override {
     static const auto method =
-        getReactNativeFeatureFlagsProviderJavaClass()->getMethod<jboolean()>("androidEnablePendingFabricTransactions");
+        getReactNativeFeatureFlagsProviderJavaClass()->getMethod<jboolean()>("allowRecursiveCommitsWithSynchronousMountOnAndroid");
     return method(javaProvider_);
   }
 
@@ -159,6 +159,18 @@ class ReactNativeFeatureFlagsProviderHolder
     return method(javaProvider_);
   }
 
+  bool useRuntimeShadowNodeReferenceUpdate() override {
+    static const auto method =
+        getReactNativeFeatureFlagsProviderJavaClass()->getMethod<jboolean()>("useRuntimeShadowNodeReferenceUpdate");
+    return method(javaProvider_);
+  }
+
+  bool useRuntimeShadowNodeReferenceUpdateOnLayout() override {
+    static const auto method =
+        getReactNativeFeatureFlagsProviderJavaClass()->getMethod<jboolean()>("useRuntimeShadowNodeReferenceUpdateOnLayout");
+    return method(javaProvider_);
+  }
+
   bool useStateAlignmentMechanism() override {
     static const auto method =
         getReactNativeFeatureFlagsProviderJavaClass()->getMethod<jboolean()>("useStateAlignmentMechanism");
@@ -179,9 +191,9 @@ bool JReactNativeFeatureFlagsCxxInterop::allowCollapsableChildren(
   return ReactNativeFeatureFlags::allowCollapsableChildren();
 }
 
-bool JReactNativeFeatureFlagsCxxInterop::androidEnablePendingFabricTransactions(
+bool JReactNativeFeatureFlagsCxxInterop::allowRecursiveCommitsWithSynchronousMountOnAndroid(
     facebook::jni::alias_ref<JReactNativeFeatureFlagsCxxInterop> /*unused*/) {
-  return ReactNativeFeatureFlags::androidEnablePendingFabricTransactions();
+  return ReactNativeFeatureFlags::allowRecursiveCommitsWithSynchronousMountOnAndroid();
 }
 
 bool JReactNativeFeatureFlagsCxxInterop::batchRenderingUpdatesInEventLoop(
@@ -269,6 +281,16 @@ bool JReactNativeFeatureFlagsCxxInterop::useNativeViewConfigsInBridgelessMode(
   return ReactNativeFeatureFlags::useNativeViewConfigsInBridgelessMode();
 }
 
+bool JReactNativeFeatureFlagsCxxInterop::useRuntimeShadowNodeReferenceUpdate(
+    facebook::jni::alias_ref<JReactNativeFeatureFlagsCxxInterop> /*unused*/) {
+  return ReactNativeFeatureFlags::useRuntimeShadowNodeReferenceUpdate();
+}
+
+bool JReactNativeFeatureFlagsCxxInterop::useRuntimeShadowNodeReferenceUpdateOnLayout(
+    facebook::jni::alias_ref<JReactNativeFeatureFlagsCxxInterop> /*unused*/) {
+  return ReactNativeFeatureFlags::useRuntimeShadowNodeReferenceUpdateOnLayout();
+}
+
 bool JReactNativeFeatureFlagsCxxInterop::useStateAlignmentMechanism(
     facebook::jni::alias_ref<JReactNativeFeatureFlagsCxxInterop> /*unused*/) {
   return ReactNativeFeatureFlags::useStateAlignmentMechanism();
@@ -298,8 +320,8 @@ void JReactNativeFeatureFlagsCxxInterop::registerNatives() {
         "allowCollapsableChildren",
         JReactNativeFeatureFlagsCxxInterop::allowCollapsableChildren),
       makeNativeMethod(
-        "androidEnablePendingFabricTransactions",
-        JReactNativeFeatureFlagsCxxInterop::androidEnablePendingFabricTransactions),
+        "allowRecursiveCommitsWithSynchronousMountOnAndroid",
+        JReactNativeFeatureFlagsCxxInterop::allowRecursiveCommitsWithSynchronousMountOnAndroid),
       makeNativeMethod(
         "batchRenderingUpdatesInEventLoop",
         JReactNativeFeatureFlagsCxxInterop::batchRenderingUpdatesInEventLoop),
@@ -351,6 +373,12 @@ void JReactNativeFeatureFlagsCxxInterop::registerNatives() {
       makeNativeMethod(
         "useNativeViewConfigsInBridgelessMode",
         JReactNativeFeatureFlagsCxxInterop::useNativeViewConfigsInBridgelessMode),
+      makeNativeMethod(
+        "useRuntimeShadowNodeReferenceUpdate",
+        JReactNativeFeatureFlagsCxxInterop::useRuntimeShadowNodeReferenceUpdate),
+      makeNativeMethod(
+        "useRuntimeShadowNodeReferenceUpdateOnLayout",
+        JReactNativeFeatureFlagsCxxInterop::useRuntimeShadowNodeReferenceUpdateOnLayout),
       makeNativeMethod(
         "useStateAlignmentMechanism",
         JReactNativeFeatureFlagsCxxInterop::useStateAlignmentMechanism),
