@@ -59,6 +59,7 @@ import com.facebook.react.fabric.FabricUIManager;
 import com.facebook.react.interfaces.TaskInterface;
 import com.facebook.react.interfaces.exceptionmanager.ReactJsExceptionHandler;
 import com.facebook.react.interfaces.fabric.ReactSurface;
+import com.facebook.react.internal.featureflags.ReactNativeFeatureFlags;
 import com.facebook.react.modules.appearance.AppearanceModule;
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
@@ -215,7 +216,8 @@ public class ReactHostImpl implements ReactHost {
         reactInstance -> {
           log(method, "Execute");
           reactInstance.prerenderSurface(surface);
-        });
+        },
+        mBGExecutor);
   }
 
   /**
@@ -235,7 +237,8 @@ public class ReactHostImpl implements ReactHost {
         reactInstance -> {
           log(method, "Execute");
           reactInstance.startSurface(surface);
-        });
+        },
+        mBGExecutor);
   }
 
   /**
@@ -255,7 +258,8 @@ public class ReactHostImpl implements ReactHost {
             reactInstance -> {
               log(method, "Execute");
               reactInstance.stopSurface(surface);
-            })
+            },
+            mBGExecutor)
         .makeVoid();
   }
 
@@ -756,7 +760,8 @@ public class ReactHostImpl implements ReactHost {
         reactInstance -> {
           log(method, "Execute");
           reactInstance.loadJSBundle(bundleLoader);
-        });
+        },
+        null);
   }
 
   /* package */ Task<Boolean> registerSegment(
@@ -771,7 +776,8 @@ public class ReactHostImpl implements ReactHost {
           log(method, "Execute");
           reactInstance.registerSegment(segmentId, path);
           assertNotNull(callback).invoke();
-        });
+        },
+        null);
   }
 
   /* package */ void handleHostException(Exception e) {
@@ -800,7 +806,8 @@ public class ReactHostImpl implements ReactHost {
         method,
         reactInstance -> {
           reactInstance.callFunctionOnModule(moduleName, methodName, args);
-        });
+        },
+        null);
   }
 
   /* package */ void attachSurface(ReactSurfaceImpl surface) {
@@ -852,8 +859,8 @@ public class ReactHostImpl implements ReactHost {
     }
   }
 
-  /* package */ interface VeniceThenable<T> {
-    void then(T t);
+  private interface ReactInstanceCalback {
+    void then(ReactInstance reactInstance);
   }
 
   @ThreadConfined("ReactHost")
@@ -887,7 +894,11 @@ public class ReactHostImpl implements ReactHost {
   @ThreadConfined(UI)
   private void moveToHostDestroy(@Nullable ReactContext currentContext) {
     mReactLifecycleStateManager.moveToOnHostDestroy(currentContext);
-    destroyReactHostInspectorTarget();
+    if (currentContext == null) {
+      // There's no current context/instance that requires the host inspector
+      // target to be kept alive, so we can destroy it immediately.
+      destroyInspectorHostTarget();
+    }
     setCurrentActivity(null);
   }
 
@@ -907,10 +918,22 @@ public class ReactHostImpl implements ReactHost {
         TAG, new ReactNoCrashSoftException(method + ": " + message));
   }
 
+  private Executor getDefaultReactInstanceExecutor() {
+    return ReactNativeFeatureFlags.useImmediateExecutorInAndroidBridgeless()
+        ? Task.IMMEDIATE_EXECUTOR
+        : mBGExecutor;
+  }
+
   /** Schedule work on a ReactInstance that is already created. */
   private Task<Boolean> callWithExistingReactInstance(
-      final String callingMethod, final VeniceThenable<ReactInstance> continuation) {
+      final String callingMethod,
+      final ReactInstanceCalback continuation,
+      @Nullable Executor executor) {
     final String method = "callWithExistingReactInstance(" + callingMethod + ")";
+
+    if (executor == null) {
+      executor = getDefaultReactInstanceExecutor();
+    }
 
     return mReactInstanceTaskRef
         .get()
@@ -925,13 +948,19 @@ public class ReactHostImpl implements ReactHost {
               continuation.then(reactInstance);
               return TRUE;
             },
-            mBGExecutor);
+            executor);
   }
 
   /** Create a ReactInstance if it doesn't exist already, and schedule work on it. */
   private Task<Void> callAfterGetOrCreateReactInstance(
-      final String callingMethod, final VeniceThenable<ReactInstance> runnable) {
+      final String callingMethod,
+      final ReactInstanceCalback runnable,
+      @Nullable Executor executor) {
     final String method = "callAfterGetOrCreateReactInstance(" + callingMethod + ")";
+
+    if (executor == null) {
+      executor = getDefaultReactInstanceExecutor();
+    }
 
     return getOrCreateReactInstance()
         .onSuccess(
@@ -945,15 +974,14 @@ public class ReactHostImpl implements ReactHost {
               runnable.then(reactInstance);
               return null;
             },
-            mBGExecutor)
+            executor)
         .continueWith(
             task -> {
               if (task.isFaulted()) {
                 handleHostException(task.getError());
               }
               return null;
-            },
-            mBGExecutor);
+            });
   }
 
   private BridgelessReactContext getOrCreateReactContext() {
@@ -1664,13 +1692,15 @@ public class ReactHostImpl implements ReactHost {
     return mReactHostInspectorTarget;
   }
 
-  private void destroyReactHostInspectorTarget() {
+  @ThreadConfined(UI)
+  private void destroyInspectorHostTarget() {
     if (mReactHostInspectorTarget != null) {
       mReactHostInspectorTarget.close();
       mReactHostInspectorTarget = null;
     }
   }
 
+  @ThreadConfined(UI)
   private void unregisterInstanceFromInspector(final @Nullable ReactInstance reactInstance) {
     if (reactInstance != null) {
       if (InspectorFlags.getFuseboxEnabled()) {
@@ -1679,6 +1709,12 @@ public class ReactHostImpl implements ReactHost {
             "Host inspector target destroyed before instance was unregistered");
       }
       reactInstance.unregisterFromInspector();
+    }
+    if (mReactLifecycleStateManager.getLifecycleState() == LifecycleState.BEFORE_CREATE) {
+      // If the host is being destroyed, now that the current context/instance
+      // has been unregistered, we can safely destroy the host's inspector
+      // target.
+      destroyInspectorHostTarget();
     }
   }
 }
