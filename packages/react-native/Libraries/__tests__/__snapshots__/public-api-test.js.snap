@@ -7571,6 +7571,14 @@ export type EdgeInsetsValue = {
   right: number,
   bottom: number,
 };
+export type BoxShadowPrimitive = {
+  offsetX: number | string,
+  offsetY: number | string,
+  color?: number | ColorValue,
+  blurRadius?: number | string,
+  spreadDistance?: number | string,
+  inset?: boolean,
+};
 export type DimensionValue = number | string | \\"auto\\" | AnimatedNode | null;
 export type AnimatableNumericValue = number | AnimatedNode;
 export type CursorValue = \\"auto\\" | \\"pointer\\";
@@ -7686,11 +7694,15 @@ export type ____ShadowStyle_Internal = $ReadOnly<{
 type ____FilterStyle_Internal = $ReadOnly<{
   experimental_filter?: $ReadOnlyArray<FilterPrimitive>,
 }>;
+type ____BoxShadowStyle_Internal = $ReadOnly<{
+  experimental_boxShadow?: $ReadOnlyArray<BoxShadowPrimitive>,
+}>;
 export type ____ViewStyle_InternalCore = $ReadOnly<{
   ...$Exact<____LayoutStyle_Internal>,
   ...$Exact<____ShadowStyle_Internal>,
   ...$Exact<____TransformStyle_Internal>,
   ...____FilterStyle_Internal,
+  ...____BoxShadowStyle_Internal,
   backfaceVisibility?: \\"visible\\" | \\"hidden\\",
   backgroundColor?: ____ColorValue_Internal,
   borderColor?: ____ColorValue_Internal,
@@ -7967,6 +7979,21 @@ exports[`public API should not change unintentionally Libraries/StyleSheet/priva
 exports[`public API should not change unintentionally Libraries/StyleSheet/processAspectRatio.js 1`] = `
 "declare function processAspectRatio(aspectRatio?: number | string): ?number;
 declare module.exports: processAspectRatio;
+"
+`;
+
+exports[`public API should not change unintentionally Libraries/StyleSheet/processBoxShadow.js 1`] = `
+"export type ParsedBoxShadow = {
+  offsetX: number,
+  offsetY: number,
+  color?: ProcessedColorValue,
+  blurRadius?: number,
+  spreadDistance?: number,
+  inset?: boolean,
+};
+declare export default function processBoxShadow(
+  rawBoxShadows: $ReadOnlyArray<BoxShadowPrimitive> | string
+): Array<ParsedBoxShadow>;
 "
 `;
 

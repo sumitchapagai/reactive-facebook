@@ -11,6 +11,15 @@ import {Animated} from '../Animated/Animated';
 import {ImageResizeMode} from '../Image/ImageResizeMode';
 import {ColorValue} from './StyleSheet';
 
+export type BoxShadowPrimitive = {
+  offsetX: number | string;
+  offsetY: number | string;
+  color?: string | undefined;
+  blurRadius?: ColorValue | number | undefined;
+  spreadDistance?: number | string | undefined;
+  inset?: boolean | undefined;
+};
+
 type FlexAlignType =
   | 'flex-start'
   | 'flex-end'
@@ -231,6 +240,7 @@ export interface TransformsStyle {
  * @see https://reactnative.dev/docs/view#style
  */
 export interface ViewStyle extends FlexStyle, ShadowStyleIOS, TransformsStyle {
+  experimental_boxShadow?: BoxShadowPrimitive | undefined;
   backfaceVisibility?: 'visible' | 'hidden' | undefined;
   backgroundColor?: ColorValue | undefined;
   borderBlockColor?: ColorValue | undefined;
