@@ -3,6 +3,9 @@
 <PROJECT_ROOT>/packages/react-native/template/.*
 <PROJECT_ROOT>/packages/react-native/sdks/.*
 
+; Ignore the codegen e2e tests
+<PROJECT_ROOT>/packages/react-native-codegen/e2e/__test_fixtures__/modules/NativeEnumTurboModule.js
+
 ; Ignore the Dangerfile
 <PROJECT_ROOT>/packages/react-native-bots/dangerfile.js
 
@@ -88,4 +91,4 @@ untyped-import
 untyped-type-import
 
 [version]
-^0.237.2
+^0.238.0

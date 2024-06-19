@@ -61,6 +61,11 @@ export type MixedTypeAnnotation = $ReadOnly<{
   type: 'MixedTypeAnnotation',
 }>;
 
+type EventEmitterTypeAnnotation = $ReadOnly<{
+  type: 'EventEmitterTypeAnnotation',
+  typeAnnotation: NativeModuleBaseTypeAnnotation,
+}>;
+
 type FunctionTypeAnnotation<+P, +R> = $ReadOnly<{
   type: 'FunctionTypeAnnotation',
   params: $ReadOnlyArray<NamedShape<P>>,
@@ -242,8 +247,12 @@ export type NativeModuleSchema = $ReadOnly<{
 }>;
 
 type NativeModuleSpec = $ReadOnly<{
-  properties: $ReadOnlyArray<NativeModulePropertyShape>,
+  eventEmitters: $ReadOnlyArray<NativeModuleEventEmitterShape>,
+  methods: $ReadOnlyArray<NativeModulePropertyShape>,
 }>;
+
+export type NativeModuleEventEmitterShape =
+  NamedShape<EventEmitterTypeAnnotation>;
 
 export type NativeModulePropertyShape = NamedShape<
   Nullable<NativeModuleFunctionTypeAnnotation>,
