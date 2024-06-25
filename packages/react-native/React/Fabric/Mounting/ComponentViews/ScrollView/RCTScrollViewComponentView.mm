@@ -459,6 +459,8 @@ static void RCTSendScrollEventForNativeAnimations_DEPRECATED(UIScrollView *scrol
   _firstVisibleView = nil;
 }
 
+RCTComponentViewShouldBeRecycled(true);
+
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView

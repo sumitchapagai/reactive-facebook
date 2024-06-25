@@ -271,6 +271,8 @@ static NSSet<NSNumber *> *returnKeyTypesSet;
   [_backedTextInputView resignFirstResponder];
 }
 
+RCTComponentViewShouldBeRecycled(true);
+
 #pragma mark - RCTBackedTextInputDelegate
 
 - (BOOL)textInputShouldBeginEditing

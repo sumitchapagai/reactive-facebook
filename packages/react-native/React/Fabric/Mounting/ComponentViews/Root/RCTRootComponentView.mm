@@ -52,4 +52,6 @@ using namespace facebook::react;
   return concreteComponentDescriptorProvider<RootComponentDescriptor>();
 }
 
+RCTComponentViewShouldBeRecycled(true);
+
 @end

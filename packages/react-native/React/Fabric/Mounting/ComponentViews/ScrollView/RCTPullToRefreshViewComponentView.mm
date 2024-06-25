@@ -95,6 +95,8 @@ using namespace facebook::react;
   [super updateProps:props oldProps:oldProps];
 }
 
+RCTComponentViewShouldBeRecycled(true);
+
 #pragma mark -
 
 - (void)handleUIControlEventValueChanged
