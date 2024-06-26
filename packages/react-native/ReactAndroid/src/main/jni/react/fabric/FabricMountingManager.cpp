@@ -405,11 +405,6 @@ void FabricMountingManager::executeMount(
             }
           }
 
-          // EventEmitter
-          cppUpdateEventEmitterMountItems.push_back(
-              CppMountItem::UpdateEventEmitterMountItem(
-                  mutation.newChildShadowView));
-
           break;
         }
         default: {
@@ -812,22 +807,12 @@ void FabricMountingManager::preallocateShadowView(
 
   static auto preallocateView =
       JFabricUIManager::javaClassStatic()
-          ->getMethod<void(
-              jint, jint, jstring, jobject, jobject, jobject, jboolean)>(
+          ->getMethod<void(jint, jint, jstring, jobject, jobject, jboolean)>(
               "preallocateView");
 
-  // Do not hold onto Java object from C
-  // We DO want to hold onto C object from Java, since we don't know the
-  // lifetime of the Java object
-  jni::local_ref<StateWrapperImpl::JavaPart> javaStateWrapper = nullptr;
-  if (shadowView.state != nullptr) {
-    javaStateWrapper = StateWrapperImpl::newObjectJavaArgs();
-    StateWrapperImpl* cStateWrapper = cthis(javaStateWrapper);
-    cStateWrapper->state_ = shadowView.state;
-  }
-
   // Do not hold a reference to javaEventEmitter from the C++ side.
-  jni::local_ref<EventEmitterWrapper::JavaPart> javaEventEmitter = nullptr;
+  auto javaEventEmitter =
+      EventEmitterWrapper::newObjectCxxArgs(shadowView.eventEmitter);
 
   jni::local_ref<jobject> props = getProps({}, shadowView);
 
@@ -839,8 +824,7 @@ void FabricMountingManager::preallocateShadowView(
       shadowView.tag,
       component.get(),
       props.get(),
-      (javaStateWrapper != nullptr ? javaStateWrapper.get() : nullptr),
-      (javaEventEmitter != nullptr ? javaEventEmitter.get() : nullptr),
+      javaEventEmitter.get(),
       isLayoutableShadowNode);
 }
 
