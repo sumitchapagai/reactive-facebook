@@ -370,6 +370,7 @@ ShadowNode::Unshared ShadowNode::cloneTree(
 
     childNode = parentNode.clone(
         {.children = std::make_shared<ShadowNode::ListOfShared>(children),
+         .state = parentNode.getState(),
          .traits = traits});
   }
 
