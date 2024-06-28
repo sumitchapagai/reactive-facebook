@@ -232,6 +232,8 @@ const PromptOptions = () => {
     string | {login: string, password: string},
   >('');
 
+  const theme = React.useContext(RNTesterThemeContext);
+
   const customButtons = [
     {
       text: 'Custom OK',
