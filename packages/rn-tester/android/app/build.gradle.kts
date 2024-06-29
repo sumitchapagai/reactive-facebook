@@ -29,7 +29,7 @@ react {
   codegenDir = file("$rootDir/node_modules/@react-native/codegen")
   //   The cli.js file which is the React Native CLI entrypoint. Default is
   // ../node_modules/react-native/cli.js
-  cliFile = file("$reactNativeDirPath/cli.js")
+  cliFile = file("../../../react-native/scripts/bundle.js")
 
   /* Variants */
   //   The list of variants to that are debuggable. For those we're going to
